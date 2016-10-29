@@ -67,10 +67,10 @@ function refresh_pokemon_data(){
     var apigClient = apigClientFactory.newClient();
     var params = {
         //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
-        north: 40.782228,
-        south: 40.6885517,
-        east: -73.9510973,
-        west: -74.0271637,
+        north: 42.782228,
+        south: 38.6885517,
+        east: -71.9510973,
+        west: -76.0271637,
     };
     var body = {}; 
     var additionalParams = {};
