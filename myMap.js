@@ -6,7 +6,7 @@ var map_manager = {
 map_manager.map_items = [
     {
       "pokemon_id" : 12,
-      "expire" : 1477728684,
+      "expire" : 1477780165000,
       "longitude" : -73.9800345,
       "latitude" : 40.7596651,
     }
@@ -22,7 +22,7 @@ function loadMapScenario() {
 // 1. Define pokemon data format, create mock pokemon data
 function get_counter_down_time_from_exprire_epoch(epoch) {
     var now_time = new Date().getTime() / 1000;
-    var time_left = epoch - now_time;
+    var time_left = epoch/1000 - now_time;
     var second = Math.floor(time_left % 60);
     var minute = Math.floor(time_left / 60);
     return minute + ":" + second;
@@ -67,10 +67,10 @@ function refresh_pokemon_data(){
     var apigClient = apigClientFactory.newClient();
     var params = {
         //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
-        north: 42.782228,
-        south: 38.6885517,
-        east: -71.9510973,
-        west: -76.0271637,
+        north: bounds.getNorth(),
+        south: bounds.getSouth(),
+        west: bounds.getWest(),
+        east: bounds.getEast(),
     };
     var body = {}; 
     var additionalParams = {};
@@ -78,13 +78,12 @@ function refresh_pokemon_data(){
     apigClient.mapPokemonsGet(params, body, additionalParams)
         .then(function(result){
             //This is where you would put a success callback
-            map_manager.map_items = result.data;
+            console.log(result)
         }).catch( function(result){
             //This is where you would put an error callback
             console.log(result)
         });
 }
-
 window.setInterval(refresh_pokemon_data, 1000);
 window.setInterval(refresh_pokemon_layer, 1000);
 
