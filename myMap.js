@@ -6,7 +6,7 @@ var map_manager = {
 map_manager.map_items = [
     {
       "pokemon_id" : 12,
-      "expire" : 1477725253,
+      "expire" : 1477728684,
       "longitude" : -73.9800345,
       "latitude" : 40.7596651,
     }
@@ -85,6 +85,7 @@ function refresh_pokemon_data(){
         });
 }
 
+window.setInterval(refresh_pokemon_data, 1000);
 window.setInterval(refresh_pokemon_layer, 1000);
 
 
