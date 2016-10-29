@@ -44,3 +44,16 @@ function add_pokemon_layer(){
     map.layers.insert(pokemon_layer);
 }
 
+
+// 3. add pokemon counter down refresh.
+function refresh_pokemon_layer(){
+    // perpare new layer
+    var pokemon_layer = get_pokemon_layer_from_map_items(map_items);
+    // remove old layer
+    map.layers.clear()
+    // add new layer
+    map.layers.insert(pokemon_layer);
+}
+window.setInterval(refresh_pokemon_layer, 1000);
+
+
