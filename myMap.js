@@ -7,7 +7,7 @@ function loadMapScenario() {
 }
 
 // 1. Define pokemon data format, create mock pokemon data 
-map_manager.map_items = [
+map_items = [
     {
       "pokemon_id" : 12,
       "expire" : 1476589403,
