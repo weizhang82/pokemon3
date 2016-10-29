@@ -1,13 +1,9 @@
-var map;
-function loadMapScenario() {
-    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        credentials: 'AoFNrLtToRt5Vh7DHxkyIXnyb94nNvn0NHwy0GvRJ4PUkYXYB3nMBmtQ20AyttMe'
-    });
-    add_pokemon_layer();
+var map_manager = {
+    "map" : null,
+    "map_items" : []
 }
 
-// 1. Define pokemon data format, create mock pokemon data 
-map_items = [
+map_manager.map_items = [
     {
       "pokemon_id" : 12,
       "expire" : 1477725253,
@@ -16,6 +12,14 @@ map_items = [
     }
 ]
 
+function loadMapScenario() {
+    map_manager.map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        credentials: 'AoFNrLtToRt5Vh7DHxkyIXnyb94nNvn0NHwy0GvRJ4PUkYXYB3nMBmtQ20AyttMe'
+    });
+    add_pokemon_layer();
+}
+
+// 1. Define pokemon data format, create mock pokemon data
 function get_counter_down_time_from_exprire_epoch(epoch) {
     var now_time = new Date().getTime() / 1000;
     var time_left = epoch - now_time;
@@ -40,7 +44,7 @@ function get_pokemon_layer_from_map_items(map_items){
 }
 
 function add_pokemon_layer(){
-    var pokemon_layer = get_pokemon_layer_from_map_items(map_items);
+    var pokemon_layer = get_pokemon_layer_from_map_items(map_manager.map_items);
     map.layers.insert(pokemon_layer);
 }
 
@@ -48,12 +52,16 @@ function add_pokemon_layer(){
 // 3. add pokemon counter down refresh.
 function refresh_pokemon_layer(){
     // perpare new layer
-    var pokemon_layer = get_pokemon_layer_from_map_items(map_items);
+    var pokemon_layer = get_pokemon_layer_from_map_items(map_manager.map_items);
     // remove old layer
     map.layers.clear()
     // add new layer
     map.layers.insert(pokemon_layer);
 }
+
+// 4. connect with Rest API
+
+
 window.setInterval(refresh_pokemon_layer, 1000);
 
 
