@@ -10,11 +10,19 @@ function loadMapScenario() {
 map_items = [
     {
       "pokemon_id" : 12,
-      "expire" : 1476589403,
+      "expire" : 1477725253,
       "longitude" : -73.9800345,
       "latitude" : 40.7596651,
     }
 ]
+
+function get_counter_down_time_from_exprire_epoch(epoch) {
+    var now_time = new Date().getTime() / 1000;
+    var time_left = epoch - now_time;
+    var second = Math.floor(time_left % 60);
+    var minute = Math.floor(time_left / 60);
+    return minute + ":" + second;
+}
 
 // 2. create pokemon image on map
 function get_pokemon_layer_from_map_items(map_items){
@@ -24,7 +32,7 @@ function get_pokemon_layer_from_map_items(map_items){
         var map_item = map_items[i];
         var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(map_item["latitude"], map_item["longitude"]), 
                                                  { icon: 'images/pushpin_images/pokemon/' + map_item["pokemon_id"] + '.png' ,
-                                                   title: 'expire'});
+                            title: get_counter_down_time_from_exprire_epoch(map_item["expire"]) });
         pushpins.push(pushpin);
     }
     layer.add(pushpins);
