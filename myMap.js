@@ -22,7 +22,7 @@ function loadMapScenario() {
 // 1. Define pokemon data format, create mock pokemon data
 function get_counter_down_time_from_exprire_epoch(epoch) {
     var now_time = new Date().getTime() / 1000;
-    var time_left = epoch - now_time;
+    var time_left = epoch / 1000 - now_time;
     var second = Math.floor(time_left % 60);
     var minute = Math.floor(time_left / 60);
     return minute + ":" + second;
@@ -78,7 +78,7 @@ function refresh_pokemon_data(){
     apigClient.mapPokemonsGet(params, body, additionalParams)
         .then(function(result){
             //This is where you would put a success callback
-            console.log(result)
+            map_manager.map_items = result.data;
         }).catch( function(result){
             //This is where you would put an error callback
             console.log(result)
