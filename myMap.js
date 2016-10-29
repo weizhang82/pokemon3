@@ -4,3 +4,23 @@ function loadMapScenario() {
         credentials: 'AoFNrLtToRt5Vh7DHxkyIXnyb94nNvn0NHwy0GvRJ4PUkYXYB3nMBmtQ20AyttMe'
     });
 }
+
+// 1. Define pokemon data format, create mock pokemon data 
+map_manager.map_items = [
+    {
+      "pokemon_id" : 12,
+      "expire" : 1476589403,
+      "longitude" : -73.9800345,
+      "latitude" : 40.7596651,
+    }
+]
+
+// 2. create pokemon image on map
+function get_pokemon_layer_from_map_items(map_items){
+    var layer = new Microsoft.Maps.Layer();
+    var pushpins = Microsoft.Maps.TestDataGenerator.getPushpins(10, map.getBounds());
+    layer.add(pushpins);
+    return layer;
+}
+var pokemon_layer = get_pokemon_layer_from_map_items(map_items)
+map.layers.insert(layer);
