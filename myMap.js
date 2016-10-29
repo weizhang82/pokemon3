@@ -45,7 +45,7 @@ function get_pokemon_layer_from_map_items(map_items){
 
 function add_pokemon_layer(){
     var pokemon_layer = get_pokemon_layer_from_map_items(map_manager.map_items);
-    map.layers.insert(pokemon_layer);
+    map_manager.map.layers.insert(pokemon_layer);
 }
 
 
@@ -54,9 +54,9 @@ function refresh_pokemon_layer(){
     // perpare new layer
     var pokemon_layer = get_pokemon_layer_from_map_items(map_manager.map_items);
     // remove old layer
-    map.layers.clear()
+    map_manager.map.layers.clear()
     // add new layer
-    map.layers.insert(pokemon_layer);
+    map_manager.map.layers.insert(pokemon_layer);
 }
 
 // 4. connect with Rest API
