@@ -17,7 +17,6 @@ function loadMapScenario() {
         credentials: 'AoFNrLtToRt5Vh7DHxkyIXnyb94nNvn0NHwy0GvRJ4PUkYXYB3nMBmtQ20AyttMe'
     });
     add_pokemon_layer();
-    refresh_pokemon_data();
 }
 
 // 1. Define pokemon data format, create mock pokemon data
@@ -79,7 +78,7 @@ function refresh_pokemon_data(){
     apigClient.mapPokemonsGet(params, body, additionalParams)
         .then(function(result){
             //This is where you would put a success callback
-            map_manager.map_items = result.data;
+            console.log(result.data);
         }).catch( function(result){
             //This is where you would put an error callback
             console.log(result)
