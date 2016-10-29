@@ -60,7 +60,9 @@ function refresh_pokemon_layer(){
 }
 
 // 4. connect with Rest API
-
+function refresh_pokemon_data(){
+    var apigClient = apigClientFactory.newClient();
+}
 
 window.setInterval(refresh_pokemon_layer, 1000);
 
