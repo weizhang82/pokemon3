@@ -59,31 +59,32 @@ function refresh_pokemon_layer(){
     map_manager.map.layers.insert(pokemon_layer);
 }
 
-// 4. connect with Rest API
-function refresh_pokemon_data(){
-    // Get boudary of current map view
-    var bounds = map_manager.map.getBounds();
-    // request pokemons in current map view
-    var apigClient = apigClientFactory.newClient();
-    var params = {
-        //This is where any header, path, or querystring request params go. The key is the parameter named as defined in the API
-        north: bounds.getNorth(),
-        south: bounds.getSouth(),
-        west: bounds.getWest(),
-        east: bounds.getEast(),
-    };
-    var body = {}; 
-    var additionalParams = {};
-
-    apigClient.mapPokemonsGet(params, body, additionalParams)
-        .then(function(result){
-            //This is where you would put a success callback
-            console.log(result)
-        }).catch( function(result){
-            //This is where you would put an error callback
-            console.log(result)
-        });
+// 4. Connect with REST API
+function refresh_pokemon_data() {
+  // Get boundary of current map view
+  var bounds = map_manager.map.getBounds();
+  
+  // Request pokemons in current map view
+  var apigClient = apigClientFactory.newClient();
+  var params = {
+    north: bounds.getNorth(),
+    south: bounds.getSouth(),
+    west: bounds.getWest(),
+    east: bounds.getEast(),
+  };
+  var body = { };
+  var additionalParams = { };
+ 
+  apigClient.mapPokemonsGet(params, body, additionalParams)
+    .then(function(result){
+        //This is where you would put a success callback
+        console.log(result);
+    }).catch( function(result){
+        //This is where you would put an error callback
+        console.log(result)
+    });   
 }
+
 window.setInterval(refresh_pokemon_data, 1000);
 window.setInterval(refresh_pokemon_layer, 1000);
 
